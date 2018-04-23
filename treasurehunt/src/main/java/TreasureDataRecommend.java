@@ -56,19 +56,8 @@ public class TreasureDataRecommend {
 
 		// File file=new File("src/main/data/data.csv");
 		DataModel model = new FileDataModel(file);
-RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();
-RecommenderBuilder builder = new RecommenderBuilder() {
-    @Override
-    public Recommender buildRecommender(DataModel model) throws TasteException {
 
-        UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
-		UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.2, similarity, model);
-        return new GenericUserBasedRecommender(model, neighborhood, similarity);
-    }
-};
-double score = evaluator.evaluate(builder, null, model, 0.9, 1.0);
-System.out.println(score);
-UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
+		UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
 		
 		UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.2, similarity, model);
 		UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
