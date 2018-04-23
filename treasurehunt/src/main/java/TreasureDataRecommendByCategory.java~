@@ -51,7 +51,10 @@ public class TreasureDataRecommendByCategory {
 		DataModel model = new FileDataModel(file);
 
 		UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
-		
+		long user1=new BigInteger("Alice".getBytes()).longValue();
+		long user2=new BigInteger("Bob".getBytes()).longValue();
+		double similarityVal=similarity.userSimilarity(user1, user2);
+		System.out.println("Similarity value by category:" + similarityVal);
 		UserNeighborhood neighborhood = new ThresholdUserNeighborhood(0.1, similarity, model);
 		UserBasedRecommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 		
